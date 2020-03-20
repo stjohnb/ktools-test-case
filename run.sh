@@ -20,3 +20,4 @@ mkdir -p tmp
 # Begin simulation
 eve 1 1| getmodel > tmp/cdf.csv
 gulcalc < tmp/cdf.csv -S10 -c - | summarycalc -g -1 - > summary_out.csv
+echo "Successfully wrote summary_out.csv"
