@@ -1,1 +1,4 @@
 *.bin
+*.idx
+tmp/
+summary_out.csv

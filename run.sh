@@ -2,6 +2,7 @@
 
 set -e
 
+# Convert CSVs to bin
 evetobin < input/events.csv > input/events.bin
 itemtobin < input/items.csv > input/items.bin
 coveragetobin < input/coverages.csv > input/coverages.bin
@@ -14,5 +15,8 @@ mv footprint.idx static/
 
 vulnerabilitytobin -d $(tail -n+2 static/vulnerability.csv | awk 'BEGIN { max=0 } $3 > max { max=$3 } END { print max }' FS=",") < static/vulnerability.csv > static/vulnerability.bin
 
-eve 1 1| getmodel > cdf.csv
-gulcalc < cdf.csv -S10 -c - | summarycalc -g -1 - > summary_out.csv
+mkdir -p tmp
+
+# Begin simulation
+eve 1 1| getmodel > tmp/cdf.csv
+gulcalc < tmp/cdf.csv -S10 -c - | summarycalc -g -1 - > summary_out.csv
