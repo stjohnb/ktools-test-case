@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Convert CSVs to bin
 evetobin < input/events.csv > input/events.bin
